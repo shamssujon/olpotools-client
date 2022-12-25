@@ -1,12 +1,8 @@
-import { Container } from "@chakra-ui/react";
-
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/routes";
 
 const App = () => {
-	return (
-		<Container>
-			<h1>Hello project</h1>
-		</Container>
-	);
+	return <RouterProvider router={router} />;
 };
 
 export default App;
