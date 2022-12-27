@@ -13,20 +13,20 @@ const breakpoints = {
 	"2xl": "1536px",
 };
 
-const theme = {
+const globalTheme = {
 	styles: {
 		global: (props: any) => ({
 			"html, body, #root": {
 				minHeight: "100vh",
 			},
-			a: {
-				color: props.colorMode === "dark" ? "teal.300" : "teal.500",
-			},
+			// a: {
+			// 	color: props.colorMode === "dark" ? "teal.300" : "teal.500",
+			// },
 		}),
 	},
 };
 
-// const theme = extendTheme({ breakpoints });
+const theme = extendTheme({ breakpoints });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
