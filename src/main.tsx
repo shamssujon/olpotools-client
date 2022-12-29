@@ -3,6 +3,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
+import "@fontsource/inter";
+import "@fontsource/exo"
+import "@fontsource/exo/400.css";
+import "@fontsource/exo/500.css";
+import "@fontsource/exo/700.css";
+import "@fontsource/exo/900.css";
 
 // Extend theme
 const breakpoints = {
@@ -11,6 +17,10 @@ const breakpoints = {
 	lg: "960px",
 	xl: "1200px",
 	"2xl": "1536px",
+};
+const fonts = {
+	heading: `'Exo', sans-serif`,
+	body: `'Inter', sans-serif`,
 };
 
 const globalTheme = {
@@ -26,7 +36,7 @@ const globalTheme = {
 	},
 };
 
-const theme = extendTheme({ breakpoints });
+const theme = extendTheme({ breakpoints, fonts });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>

@@ -9,9 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.15",
     "@chakra-ui/react": "^2.4.4",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@fontsource/exo": "^4.5.10",
+    "@fontsource/inter": "^4.5.14",
     "framer-motion": "^8.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
