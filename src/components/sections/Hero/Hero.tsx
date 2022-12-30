@@ -19,19 +19,19 @@ import { BsCurrencyExchange, BsCalendarDate } from "react-icons/bs";
 const Hero = () => {
 	return (
 		// <Box pt="20" pb="80" bgGradient="linear(to-b, #6A067A, #2A0845)">
-		<Box py="20">
+		<Box py={{ base: "12", md: "20" }}>
 			<Container maxW="container.xl">
-				<Box>
+				<Box maxW="4xl" mx="auto">
 					<Box textAlign="center">
 						<Heading as="h1" size="2xl">
-							Currency and time converter
+							Convert currency and timezone
 						</Heading>
 						<Text fontSize="lg" mt="6">
 							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad, vitae nulla. Fugit ducimus
 							tempora.
 						</Text>
 					</Box>
-					<SimpleGrid columns={[1, 2]} spacing="30px" mt="10">
+					<SimpleGrid columns={{ base: 1, md: 2 }} spacing="30px" mt="10">
 						<LinkBox
 							textAlign="center"
 							bg="gray.100"
@@ -43,7 +43,7 @@ const Hero = () => {
 								<Icon as={BsCurrencyExchange} fontSize="6xl" mb="4" />
 								<Heading as="h5" size="md" mb="2">
 									<LinkOverlay as={Link} to="/currency">
-										Currency Tools
+										Currency Converter
 									</LinkOverlay>
 								</Heading>
 								<Text>Lorem ipsum, dolor sit amet consectetur adipisicing elit vitae nulla.</Text>
@@ -60,7 +60,7 @@ const Hero = () => {
 								<Icon as={BsCalendarDate} fontSize="6xl" mb="4" />
 								<Heading as="h5" size="md" mb="2">
 									<LinkOverlay as={Link} to="/time">
-										Time Tools
+										Timezone Converter
 									</LinkOverlay>
 								</Heading>
 								<Text>Lorem ipsum, dolor sit amet consectetur adipisicing elit vitae nulla.</Text>
