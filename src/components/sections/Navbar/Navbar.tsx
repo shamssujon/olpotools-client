@@ -213,7 +213,7 @@ const NAV_ITEMS: Array<NavItem> = [
 	},
 	{
 		label: "Time Converter",
-		href: "/time",
+		href: "/timezone-converter",
 	},
 	{
 		label: "Blog",

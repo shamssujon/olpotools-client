@@ -59,7 +59,7 @@ const Hero = () => {
 							<Box>
 								<Icon as={BsCalendarDate} fontSize="6xl" mb="4" />
 								<Heading as="h5" size="md" mb="2">
-									<LinkOverlay as={Link} to="/time">
+									<LinkOverlay as={Link} to="/timezone-converter">
 										Timezone Converter
 									</LinkOverlay>
 								</Heading>
