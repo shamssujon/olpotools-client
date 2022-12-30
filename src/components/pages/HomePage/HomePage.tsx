@@ -4,7 +4,7 @@ import Hero from '../../sections/Hero/Hero';
 const HomePage = () => {
     return (
         <div>
-            {/* <Hero /> */}
+            <Hero />
         </div>
     );
 };

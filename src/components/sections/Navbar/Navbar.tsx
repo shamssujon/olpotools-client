@@ -31,11 +31,11 @@ const Navbar = () => {
 				<Flex minH={"60px"} align="center">
 					<Flex flex={{ base: 1 }} justify="space-between">
 						<Link as={RouterLink} to="/">
-							<HStack>
-								<Image src={logo} alt="" boxSize={{ base: "40px", md: "50px" }} />
-								<Text fontFamily="heading" fontSize={{ base: "xl", md: "2xl" }} fontWeight="700">
-									CurrEx
-								</Text>
+							<HStack gap="1">
+								<Image src={logo} alt="" w={{ base: "150px", md: "200px" }} />
+								{/* <Text fontFamily="heading" fontSize={{ base: "xl", md: "2xl" }} fontWeight="700" textTransform="uppercase">
+									OlpoTools
+								</Text> */}
 							</HStack>
 						</Link>
 
@@ -78,7 +78,6 @@ const DesktopNav = () => {
 								to={navItem.href ?? "#"}
 								_activeLink={{ fontWeight: "bold" }}
 								p={2}
-								fontFamily="heading"
 								fontWeight={500}
 								color={linkColor}
 								_hover={{
