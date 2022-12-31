@@ -1,20 +1,15 @@
-import { Box, Container, Heading, HStack, Text, VStack } from "@chakra-ui/react";
-import { format } from "date-fns";
+import { Box, Container, Heading, Text, VStack } from "@chakra-ui/react";
+import { DateTime } from "luxon";
 import { useEffect, useState } from "react";
-import { formatInTimeZone, zonedTimeToUtc, format as formatTZ, utcToZonedTime  } from 'date-fns-tz'
+
+const dt = DateTime.now();
 
 // Local date
-const todayDate = format(new Date(), "PPPP, O");
-
-// Local TimeZone
-// const timeZone = getTimeZoneValue()
-const nyDate = utcToZonedTime(new Date(), 'America/New_York')
-console.log(nyDate);
-
+const todayDate = dt.toLocaleString(DateTime.DATETIME_FULL);
 
 // Local time fn
 function getDisplayTime() {
-	return format(new Date(), "hh:mm:ss a");
+	return DateTime.now().toLocaleString(DateTime.TIME_WITH_SECONDS);
 }
 
 const CurrentDateTime = () => {
