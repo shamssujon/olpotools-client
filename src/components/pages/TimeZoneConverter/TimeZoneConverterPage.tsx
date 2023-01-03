@@ -1,11 +1,12 @@
 import react from "react";
+import ConvertDateTime from "../../sections/ConvertDateTime/ConvertDateTime";
 import CurrentDateTime from "../../sections/CurrentDateTime/CurrentDateTime";
 
 const TimeZoneConverterPage = () => {
 	return (
 		<>
 			<CurrentDateTime />
-			{/* <CurrentDateTime /> */}
+			<ConvertDateTime />
 		</>
 	);
 };

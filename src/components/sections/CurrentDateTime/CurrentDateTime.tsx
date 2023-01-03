@@ -1,27 +1,14 @@
 import { Box, Container, Heading, Text, VStack } from "@chakra-ui/react";
-import { DateTime } from "luxon";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import useClock from "../../../hooks/useClock";
+import useDate from "../../../hooks/useDate";
 
-const dt = DateTime.now();
-
-// Local date
-const todayDate = dt.toLocaleString(DateTime.DATETIME_FULL);
-
-// Local time fn
-function getDisplayTime() {
-	return DateTime.now().toLocaleString(DateTime.TIME_WITH_SECONDS);
-}
+const systemTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 const CurrentDateTime = () => {
-	const [clockTime, setClockTime] = useState(getDisplayTime());
-
-	useEffect(() => {
-		const timeInterval = setInterval(() => {
-			setClockTime(getDisplayTime());
-		}, 1000);
-
-		return () => clearInterval(timeInterval);
-	}, []);
+	const [timezone, setTimezone] = useState(systemTimeZone);
+	const displayClock = useClock(timezone);
+	const displayDate = useDate(timezone);
 
 	return (
 		<Box py={{ base: "12", md: "20" }}>
@@ -32,9 +19,9 @@ const CurrentDateTime = () => {
 							Your Local Time
 						</Heading>
 						<Heading as="h2" size="4xl">
-							{clockTime}
+							{displayClock}
 						</Heading>
-						<Text fontSize="lg">{todayDate}</Text>
+						<Text fontSize="lg">{displayDate}</Text>
 					</VStack>
 				</Box>
 			</Container>
