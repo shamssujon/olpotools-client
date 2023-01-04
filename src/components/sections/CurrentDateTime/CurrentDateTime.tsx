@@ -18,10 +18,12 @@ const CurrentDateTime = () => {
 						<Heading as="h4" size="md">
 							Your Local Time
 						</Heading>
-						<Heading as="h2" size="4xl">
-							{displayClock}
-						</Heading>
-						<Text fontSize="lg">{displayDate}</Text>
+						<VStack gap="4">
+							<Heading as="h2" size="4xl">
+								{displayClock}
+							</Heading>
+							<Text fontSize="lg">{displayDate}</Text>
+						</VStack>
 					</VStack>
 				</Box>
 			</Container>

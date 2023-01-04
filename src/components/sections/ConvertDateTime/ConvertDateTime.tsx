@@ -1,4 +1,4 @@
-import { Box, Container, FormControl, FormLabel, Heading, Select } from "@chakra-ui/react";
+import { Box, Container, FormControl, FormLabel, Heading, Select, Text, VStack } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { format, formatInTimeZone, utcToZonedTime } from "date-fns-tz";
@@ -60,26 +60,43 @@ const ConvertDateTime = () => {
 		<Box pb={{ base: "12", md: "20" }}>
 			<Container maxW="container.xl">
 				<Box maxW="4xl" mx="auto">
-					<Box as="form">
-						<FormControl>
-							<FormLabel>See your local time in {timezone}</FormLabel>
-							<Select placeholder="Select timezone..." onChange={handleOnChange}>
-								{timezones.map((timezone: string) => (
-									<option key={timezone} value={timezone}>
-										{timezone}
-									</option>
-								))}
-							</Select>
-						</FormControl>
-					</Box>
-					{showDateTime && (
-						<>
-							<Heading as="h2" size="4xl">
-								{clockTime}
-							</Heading>
-							<p>{dateTime}</p>
-						</>
-					)}
+					<VStack textAlign="center" gap="6">
+						<Box as="form">
+							<FormControl
+								display="flex"
+								flexWrap="wrap"
+								justifyContent="center"
+								alignItems="center"
+								gap="1rem">
+								<FormLabel fontSize="xl" m="0">
+									See your local time in
+								</FormLabel>
+								<Select
+									w="auto"
+									minW="auto"
+									// variant="unstyled"
+									fontFamily="heading"
+									fontWeight="bold"
+									appearance="none"
+									placeholder="Select timezone..."
+									onChange={handleOnChange}>
+									{timezones.map((timezone: string) => (
+										<option key={timezone} value={timezone}>
+											{timezone}
+										</option>
+									))}
+								</Select>
+							</FormControl>
+						</Box>
+						{showDateTime && (
+							<VStack gap="4">
+								<Heading as="h2" size="4xl">
+									{clockTime}
+								</Heading>
+								<Text fontSize="lg">{dateTime}</Text>
+							</VStack>
+						)}
+					</VStack>
 				</Box>
 			</Container>
 		</Box>
