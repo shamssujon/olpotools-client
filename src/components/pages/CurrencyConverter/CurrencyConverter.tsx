@@ -4,8 +4,8 @@ import axios from "axios";
 
 const CurrencyConverter = () => {
 	// Fatching Currency Codes
-	const { data: currencyCodes, isLoading: loadingCurrencyCodes } = useQuery({
-		queryKey: ["currencyCodes"],
+	const { data: currencyCodesData, isLoading: loadingCurrencyCodes } = useQuery({
+		queryKey: ["currencyCodesData"],
 		queryFn: () => axios.get("https://openexchangerates.org/api/currencies.json").then((res) => res.data),
 	});
 
@@ -18,8 +18,12 @@ const CurrencyConverter = () => {
 	// Handling loading error
 	if (loadingExchangeRates || loadingCurrencyCodes) return "Loading...";
 
-	console.log(currencyCodes);
-	console.log(exchangeRates);
+	// console.log(currencyCodesData);
+	// console.log(exchangeRates);
+
+    const currencyCodes = Object.keys(currencyCodesData)
+    console.log(currencyCodes);
+    
 
 	return (
 		<Box py={{ base: "12", md: "20" }}>
