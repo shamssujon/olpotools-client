@@ -1,7 +1,26 @@
-import React from "react";
-import { Box, Container, FormControl, FormLabel, Heading, Select, Text, VStack } from "@chakra-ui/react";
+import { Box, Container, FormControl, FormLabel, Select } from "@chakra-ui/react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const CurrencyConverter = () => {
+	// Fatching Currency Codes
+	const { data: currencyCodes, isLoading: loadingCurrencyCodes } = useQuery({
+		queryKey: ["currencyCodes"],
+		queryFn: () => axios.get("https://openexchangerates.org/api/currencies.json").then((res) => res.data),
+	});
+
+	// Fatching Currency Exchange Rates
+	const { data: exchangeRates, isLoading: loadingExchangeRates } = useQuery({
+		queryKey: ["exchangeRates"],
+		queryFn: () => axios.get("https://api.exchangerate.host/convert?from=USD&to=BDT").then((res) => res.data),
+	});
+
+	// Handling loading error
+	if (loadingExchangeRates || loadingCurrencyCodes) return "Loading...";
+
+	console.log(currencyCodes);
+	console.log(exchangeRates);
+
 	return (
 		<Box py={{ base: "12", md: "20" }}>
 			<Container maxW="container.xl">
