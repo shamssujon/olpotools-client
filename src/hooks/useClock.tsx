@@ -1,27 +1,26 @@
 import { format, utcToZonedTime } from "date-fns-tz";
 import { useEffect, useState } from "react";
 
-const systemTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-// time fn
-const getDisplayTime = (timezone: any) => {
-	return format(utcToZonedTime(new Date(), timezone), "pp");
-};
-
 const useClock = ({ selectedTimezone }: any) => {
-	const [timezone, setTimezone] = useState(selectedTimezone || systemTimeZone);
-	const [clockTime, setClockTime] = useState(getDisplayTime(timezone));
+
+	// time fn
+	// const getDisplayTime = (selectedTimezone: string) => {
+	// 	return format(utcToZonedTime(new Date(), selectedTimezone), "pp");
+	// };
+
+	// const [timezone, setTimezone] = useState(selectedTimezone);
+	const [clockTime, setClockTime] = useState(format(utcToZonedTime(new Date(), selectedTimezone), "pp"));
 
 	// Running clock
 	useEffect(() => {
 		const timeInterval = setInterval(() => {
-			setClockTime(getDisplayTime(timezone));
+			setClockTime(format(utcToZonedTime(new Date(), selectedTimezone), "pp"));
 		}, 1000);
 
 		return () => clearInterval(timeInterval);
-	}, [timezone]);
+	}, [selectedTimezone]);
 
-	return clockTime;
+	return [clockTime];
 };
 
 export default useClock;

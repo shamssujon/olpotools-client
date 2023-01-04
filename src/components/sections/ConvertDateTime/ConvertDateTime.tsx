@@ -65,18 +65,19 @@ const ConvertDateTime = () => {
 							<FormControl
 								display="flex"
 								flexWrap="wrap"
+								flexDir="column"
 								justifyContent="center"
 								alignItems="center"
 								gap="1rem">
-								<FormLabel fontSize="xl" m="0">
-									See your local time in
+								<FormLabel m="0" fontFamily="heading" fontWeight="bold" fontSize="xl">
+									See your local time in:
 								</FormLabel>
 								<Select
 									w="auto"
 									minW="auto"
-									// variant="unstyled"
 									fontFamily="heading"
 									fontWeight="bold"
+									fontSize="lg"
 									appearance="none"
 									placeholder="Select timezone..."
 									onChange={handleOnChange}>
@@ -90,10 +91,10 @@ const ConvertDateTime = () => {
 						</Box>
 						{showDateTime && (
 							<VStack gap="4">
-								<Heading as="h2" size="4xl">
+								<Heading as="h2" size={{ base: "3xl", md: "4xl" }}>
 									{clockTime}
 								</Heading>
-								<Text fontSize="lg">{dateTime}</Text>
+								<Text fontSize={{ md: "lg" }}>{dateTime}</Text>
 							</VStack>
 						)}
 					</VStack>

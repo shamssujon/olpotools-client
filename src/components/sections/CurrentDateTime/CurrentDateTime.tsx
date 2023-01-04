@@ -6,8 +6,8 @@ import useDate from "../../../hooks/useDate";
 const systemTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 const CurrentDateTime = () => {
-	const [timezone, setTimezone] = useState(systemTimeZone);
-	const displayClock = useClock(timezone);
+	const [timezone, setTimezone] = useState("Africa/Nairobi");
+	const [clockTime] = useClock("Africa/Nairobi");
 	const displayDate = useDate(timezone);
 
 	return (
@@ -19,10 +19,10 @@ const CurrentDateTime = () => {
 							Your Local Time
 						</Heading>
 						<VStack gap="4">
-							<Heading as="h2" size="4xl">
-								{displayClock}
+							<Heading as="h2" size={{ base: "3xl", md: "4xl" }}>
+								{clockTime}
 							</Heading>
-							<Text fontSize="lg">{displayDate}</Text>
+							<Text fontSize={{ md: "lg" }}>{displayDate}</Text>
 						</VStack>
 					</VStack>
 				</Box>
