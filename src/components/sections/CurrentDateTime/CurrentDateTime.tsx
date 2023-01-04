@@ -1,14 +1,15 @@
 import { Box, Container, Heading, Text, VStack } from "@chakra-ui/react";
-import { useState } from "react";
-import useClock from "../../../hooks/useClock";
-import useDate from "../../../hooks/useDate";
+import { useEffect } from "react";
+import useDateTime from "../../../hooks/useDateTime";
 
 const systemTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 const CurrentDateTime = () => {
-	const [timezone, setTimezone] = useState("Africa/Nairobi");
-	const [clockTime] = useClock("Africa/Nairobi");
-	const displayDate = useDate(timezone);
+	const [clockTime, setClockTime, dateTime] = useDateTime(systemTimeZone);
+
+	// useEffect(() => {
+	// 	setDateTime(getDisplayDate(systemTimeZone));
+	// }, []);
 
 	return (
 		<Box py={{ base: "12", md: "20" }}>
@@ -22,7 +23,7 @@ const CurrentDateTime = () => {
 							<Heading as="h2" size={{ base: "3xl", md: "4xl" }}>
 								{clockTime}
 							</Heading>
-							<Text fontSize={{ md: "lg" }}>{displayDate}</Text>
+							<Text fontSize={{ md: "lg" }}>{dateTime}</Text>
 						</VStack>
 					</VStack>
 				</Box>

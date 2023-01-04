@@ -1,35 +1,15 @@
 import { Box, Container, FormControl, FormLabel, Heading, Select, Text, VStack } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { format, formatInTimeZone, utcToZonedTime } from "date-fns-tz";
-import { useEffect, useState } from "react";
-
-// time fn
-function getDisplayTime(timezone) {
-	return format(utcToZonedTime(new Date(), timezone), "pp");
-}
-
-// date fn
-function getDisplayDate(timezone) {
-	return formatInTimeZone(new Date(), timezone, "PPPP, z");
-}
+import { useState } from "react";
+import useDateTime from "../../../hooks/useDateTime";
 
 const systemTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 const ConvertDateTime = () => {
-	const [timezone, setTimezone] = useState(systemTimeZone);
-	const [clockTime, setClockTime] = useState(getDisplayTime(timezone));
-	const [dateTime, setdateTime] = useState(getDisplayDate(timezone));
-	const [showDateTime, setShowDateTime] = useState(false);
-
-	// Running clock
-	useEffect(() => {
-		const timeInterval = setInterval(() => {
-			setClockTime(getDisplayTime(timezone));
-		}, 1000);
-
-		return () => clearInterval(timeInterval);
-	}, [timezone]);
+	const [clockTime, setClockTime, dateTime, setDateTime, setTimezone, getDisplayTime, getDisplayDate] =
+		useDateTime(systemTimeZone);
+	const [showDateTime, setshowDateTime] = useState(false);
 
 	// Faching timezones
 	const { data: timezones, isLoading } = useQuery({
@@ -43,7 +23,6 @@ const ConvertDateTime = () => {
 	// Handling select onChange
 	const handleOnChange = (e) => {
 		e.preventDefault();
-		setShowDateTime(false);
 		const selectedTimezone = e.target.value;
 		const matchedTimezone = timezones.find((tz) => tz === selectedTimezone);
 		// console.log(matchedTimezone);
@@ -51,8 +30,8 @@ const ConvertDateTime = () => {
 		if (matchedTimezone) {
 			setTimezone(matchedTimezone);
 			setClockTime(getDisplayTime(matchedTimezone));
-			setdateTime(getDisplayDate(matchedTimezone));
-			setShowDateTime(true);
+			setDateTime(getDisplayDate(matchedTimezone));
+			setshowDateTime(true);
 		}
 	};
 
@@ -89,6 +68,7 @@ const ConvertDateTime = () => {
 								</Select>
 							</FormControl>
 						</Box>
+
 						{showDateTime && (
 							<VStack gap="4">
 								<Heading as="h2" size={{ base: "3xl", md: "4xl" }}>
