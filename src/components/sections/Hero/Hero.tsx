@@ -42,7 +42,7 @@ const Hero = () => {
 							<Box>
 								<Icon as={BsCurrencyExchange} fontSize="6xl" mb="4" />
 								<Heading as="h5" size="md" mb="2">
-									<LinkOverlay as={Link} to="/currency">
+									<LinkOverlay as={Link} to="/currency-converter">
 										Currency Converter
 									</LinkOverlay>
 								</Heading>
