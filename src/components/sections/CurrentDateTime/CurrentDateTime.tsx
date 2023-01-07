@@ -1,5 +1,4 @@
 import { Box, Container, Heading, Text, VStack } from "@chakra-ui/react";
-import { useEffect } from "react";
 import useDateTime from "../../../hooks/useDateTime";
 
 const systemTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
