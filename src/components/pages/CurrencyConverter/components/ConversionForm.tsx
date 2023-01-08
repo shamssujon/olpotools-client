@@ -1,14 +1,31 @@
-import { Alert, AlertIcon, Box, Button, FormControl, FormLabel, Input, Select, SimpleGrid } from "@chakra-ui/react";
+import {
+	Alert,
+	AlertIcon,
+	Box,
+	Button,
+	FormControl,
+	FormErrorMessage,
+	FormLabel,
+	Input,
+	Select,
+	SimpleGrid,
+} from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type Inputs = {
+	amount: number;
+	convertFrom: string;
+	convertTo: string;
+};
 
 const ConversionForm = ({ handleExchangeRates }) => {
 	const {
 		handleSubmit,
 		register,
 		formState: { errors, isSubmitting },
-	} = useForm();
+	} = useForm<Inputs>();
 
 	// Fatching Currency Codes
 	const { data: currencyCodesData, isLoading: loadingCurrencyCodes } = useQuery({
@@ -28,8 +45,8 @@ const ConversionForm = ({ handleExchangeRates }) => {
 
 	return (
 		<Box as="form" onSubmit={handleSubmit(handleExchangeRates)} display="grid" gap="6">
-			<SimpleGrid columns={3} spacing={{ base: 4, md: 6 }}>
-				<FormControl>
+			<SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 4, md: 6 }}>
+				<FormControl isInvalid={errors.amount}>
 					<FormLabel mr="0" mb="2" fontWeight="bold">
 						Amount
 					</FormLabel>
@@ -38,10 +55,14 @@ const ConversionForm = ({ handleExchangeRates }) => {
 						defaultValue={1}
 						size={{ base: "md", md: "lg" }}
 						{...register("amount", {
-							required: "Amount is required",
+							required: {
+								value: true,
+								message: "Amount is required",
+							},
 						})}
 					/>
 					{/* <FormErrorMessage>{errors.amount && errors.amount.message}</FormErrorMessage> */}
+					{errors?.amount && <FormErrorMessage>{errors?.amount?.message}</FormErrorMessage>}
 				</FormControl>
 				<FormControl>
 					<FormLabel mr="0" mb="2" fontWeight="bold">
@@ -82,7 +103,7 @@ const ConversionForm = ({ handleExchangeRates }) => {
 					</Select>
 				</FormControl>
 
-				<Alert status="info" gridColumn={"span 2"} fontSize="xs" bg={"transparent"} p="0">
+				<Alert status="info" gridColumn={{ md: "span 2" }} fontSize="xs" bg={"transparent"} p="0">
 					<AlertIcon />
 					We use the mid-market rate for our Converter. This is for informational purposes only. You won't
 					receive this rate when sending money.
